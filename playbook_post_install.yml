@@ -10,7 +10,7 @@
         msg: "Hello, World! This is my first Ansible playbook."
         
     - name: Fetch information for the 'default' Namespace
-      community.kubernetes.k8s_info:
+      kubernetes.core.k8s_info:
         api_version: v1
         kind: Namespace
         name: default  # Specify the name of the resource you want
