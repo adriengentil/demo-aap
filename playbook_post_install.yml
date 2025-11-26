@@ -8,3 +8,15 @@
     - name: Print the message "Hello, World!"
       ansible.builtin.debug:
         msg: "Hello, World! This is my first Ansible playbook."
+        
+    - name: Fetch information for the 'default' Namespace
+      community.kubernetes.k8s_info:
+        api_version: v1
+        kind: Namespace
+        name: default  # Specify the name of the resource you want
+      register: default_ns_info
+      # The task will fail if the Kubernetes cluster is unreachable or the namespace doesn't exist.
+        
+    - name: Display all retrieved information about the 'default' Namespace
+      ansible.builtin.debug:
+        var: default_ns_info.resources[0]
